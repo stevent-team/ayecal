@@ -1,0 +1,10 @@
+{
+  "name": "ayecal",
+  "version": "0.1.0",
+  "description": "Generate and serve iCal calendar files",
+  "main": "index.js",
+  "repository": "https://github.com/giraugh/ayecal",
+  "author": "Ewan Breakey <ebreakey@gmail.com>",
+  "license": "MIT",
+  "private": false
+}
