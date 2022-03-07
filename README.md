@@ -43,7 +43,7 @@ import ayecal from 'ayecal'
 // Create an event
 const myEvent = ayecal.event({
   summary: 'Company Mixer',
-  location: '32 Downtown st, Melbourne Australia',
+  location: '32 Downtown St, Melbourne Australia',
   description: 'Hey everyone! Come to my party :)',
   uid: 5678, // from your API
   startTime: new Date(),
@@ -62,12 +62,17 @@ myCalendar.addEvent(myEvent)
 
 PRs are welcomed :)
 
+Run `yarn` to install dependencies then `yarn watch` to build on file changes.
+
+Run `yarn test` before committing to run the test cases.
+
 ### To Do
 
 - [ ] Recurring Event Support
 - [ ] To Do Support
 - [ ] ICS Parsing
 - [ ] Non-mutable objects?
+- [ ] Support all fields from the iCal spec
 
 ### License
 
