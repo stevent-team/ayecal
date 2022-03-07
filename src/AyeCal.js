@@ -24,12 +24,14 @@ export class AyeCal {
   addEvent(event) {
     // Ensure event is an AyeEvent object
     if (!(event instanceof AyeEvent))
-      event = AyeEvent({ ...event, scope: this.scope })
+      event = new AyeEvent({ ...event, scope: this.scope })
 
     // Look for uid collision
     const collidingEvent = this.events.find(e => e.uid === event.uid)
     if (collidingEvent)
       throw new Error(`Failed to add event with uid ${event.uid}, uid already present in calendar`)
+
+    this.events = [...this.events, event]
     
     return this
   }
@@ -59,11 +61,18 @@ export class AyeCal {
       'X-WR-TIMEZONE': this.timeZoneName,
     }
 
+    // Convert calendar fields to a string
     const text = Object.entries(fields)
+      .filter(([k, v]) => k && v)
       .map(([k, v]) => `${k}:${v}`)
       .join('\n')
 
-    return `BEGIN:VCALENDAR\n${text}\nEND:VCALENDAR`
+    // Convert calendar events to a string
+    const eventText = this.events
+      .map(event => event.toICS())
+      .join('\n')
+
+    return `BEGIN:VCALENDAR\n${text}\n${eventText}\nEND:VCALENDAR`
   }
 }
 

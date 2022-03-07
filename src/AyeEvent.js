@@ -1,3 +1,5 @@
+import { formatDate } from './utils'
+
 export default class AyeEvent {
   constructor({
     summary,
@@ -17,17 +19,17 @@ export default class AyeEvent {
       throw new Error('startTime and endTime arguments must be Date types')
 
     // Check UID existence
-    if (!uid)
+    if (uid === undefined)
       throw new Error('UID argument must be provided to provide unique identifiers to each event.')
     
     // Set props from fields
     this.startTime = startTime
     this.endTime = endTime
-    this.createdTime = createdTime ?? Date.now()
-    this.timeStamp = Date.now()
+    this.createdTime = createdTime ?? (new Date())
+    this.timeStamp = (new Date())
     this.uid = uid // Must be unique and provided
     this.description = description
-    this.location = location.replaceAll(',', '\\,')
+    this.location = location ? location.replaceAll(',', '\\,') : ''
     this.status = status
     this.summary = summary // name
     this.scope = scope
@@ -53,6 +55,7 @@ export default class AyeEvent {
     }
 
     const text = Object.entries(fields)
+      .filter(([k, v]) => k && v)
       .map(([k, v]) => `${k}:${v}`)
       .join('\n')
 
@@ -65,8 +68,3 @@ export const AyeEventStatus = {
   CANCELLED: 'CANCELLED',
   TENTATIVE: 'TENTATIVE',
 }
-
-const formatDate = date => date
-  .toISOString()
-  .replace(/\..*/, '')
-  .replace(/[^a-zA-Z0-9]/g, '')
