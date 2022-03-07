@@ -1,7 +1,13 @@
 # 👀 AyeCal
 Javascript ICal Creation utility.
 
+
 ### Usage
+
+Install from npm
+```
+npm install ayecal # or yarn add ayecal
+```
 
 **Creating Calendars**
 ```js
