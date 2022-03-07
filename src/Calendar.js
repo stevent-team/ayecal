@@ -1,10 +1,12 @@
-import AyeEvent from './AyeEvent'
+import Event from './Event'
 
-export class AyeCal {
-
-  constructor(calendarTitle = '', scope = 'aye') {
+export default class Calendar {
+  constructor({
+    name = '',
+    scope = 'aye',
+  }) {
     this.events = []
-    this.title = calendarTitle
+    this.name = name
     this.scope = scope
 
     // Get timezone
@@ -22,9 +24,9 @@ export class AyeCal {
 
   // Add event to calendar
   addEvent(event) {
-    // Ensure event is an AyeEvent object
-    if (!(event instanceof AyeEvent))
-      event = new AyeEvent({ ...event, scope: this.scope })
+    // Ensure event is an Event object
+    if (!(event instanceof Event))
+      event = new Event({ ...event, scope: this.scope })
 
     // Look for uid collision
     const collidingEvent = this.events.find(e => e.uid === event.uid)
@@ -45,7 +47,7 @@ export class AyeCal {
 
 
   // Set calendar timezone
-  timezone(timeZoneName) {
+  setTimezone(timeZoneName) {
     this.timeZoneName = timeZoneName 
     return this
   }
@@ -57,7 +59,7 @@ export class AyeCal {
       PRODID: this.meta.prodID,
       VERSION: this.meta.version,
       METHOD: this.meta.method,
-      'X-WR-CALNAME': this.title,
+      'X-WR-CALNAME': this.name,
       'X-WR-TIMEZONE': this.timeZoneName,
     }
 
@@ -75,8 +77,3 @@ export class AyeCal {
     return `BEGIN:VCALENDAR\n${text}\n${eventText}\nEND:VCALENDAR`
   }
 }
-
-const ayecal = (...args) =>
-  new AyeCal(...args)
-
-export default ayecal

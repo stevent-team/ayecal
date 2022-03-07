@@ -1,6 +1,6 @@
 import { formatDate } from './utils'
 
-export default class AyeEvent {
+export default class Event {
   constructor({
     summary,
     startTime,
@@ -12,7 +12,8 @@ export default class AyeEvent {
     sequence,
     scope = 'aye',
     status = AyeEventStatus.CONFIRMED,
-    transparent = false }) {
+    transparent = false,
+  }) {
      
     // Check Dates
     if (!(startTime instanceof Date) || !(endTime instanceof Date))
@@ -20,7 +21,7 @@ export default class AyeEvent {
 
     // Check UID existence
     if (uid === undefined)
-      throw new Error('UID argument must be provided to provide unique identifiers to each event.')
+      throw new Error('UID argument must be provided to provide unique identifiers to each event')
     
     // Set props from fields
     this.startTime = startTime
@@ -31,7 +32,7 @@ export default class AyeEvent {
     this.description = description
     this.location = location ? location.replaceAll(',', '\\,') : ''
     this.status = status
-    this.summary = summary // name
+    this.summary = summary // Event name
     this.scope = scope
     this.transparent = transparent
     this.sequence = sequence
@@ -63,7 +64,7 @@ export default class AyeEvent {
   }
 }
 
-export const AyeEventStatus = {
+export const EventStatus = {
   CONFIRMED: 'CONFIRMED',
   CANCELLED: 'CANCELLED',
   TENTATIVE: 'TENTATIVE',

@@ -1,2 +1,7 @@
-export { default as ayecal, AyeCal } from './AyeCal'
-export { default as AyeEvent } from './AyeEvent'
+import Calendar from './Calendar'
+import Event from './Event'
+
+const ayecal = args => new Calendar(args)
+ayecal.event = args => new Event(args)
+
+export default ayecal

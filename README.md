@@ -1,22 +1,27 @@
 # 🏴‍☠️ AyeCal
-Javascript iCal creation utility.
 
+Javascript iCal creation utility.
 
 ### Usage
 
 Install from npm
-```
+
+```bash
 npm install ayecal # or yarn add ayecal
 ```
 
 **Creating Calendars**
+
 ```js
-import { ayecal } from 'ayecal'
+import ayecal from 'ayecal'
 
 // Create a calendar
 // Provide a name and a "scope" which distinguishes events from other calendars
-const myCal = ayecal('My Calendar', 'custom-calendar.net')
-  .timezone('Australia/Melbourne')
+const myCalendar = ayecal({
+    name: 'My Calendar',
+    scope: 'custom-calendar.net',
+  })
+  .setTimezone('Australia/Melbourne')
   .addEvent({
     summary: 'Jacob\'s 22nd Birthday Party',
     location: 'My apartment',
@@ -27,25 +32,30 @@ const myCal = ayecal('My Calendar', 'custom-calendar.net')
   })
 
 // Convert to an ICS string
-const myICS = myCal.toICS()
+const myICS = myCalendar.toICS()
 ```
 
 **Creating Events**
+
 ```js
-import { AyeEvent } from 'ayecal'
+import ayecal from 'ayecal'
 
 // Create an event
-const myEvent = AyeEvent({
+const myEvent = ayecal.event({
   summary: 'Company Mixer',
   location: '32 Downtown st, Melbourne Australia',
   description: 'Hey everyone! Come to my party :)',
-  uid: 5678 // from your API
+  uid: 5678, // from your API
   startTime: new Date(),
   endTime: new Date(),
 })
 
 // Convert to an ICS string
 const eventICS = myEvent.toICS()
+
+// Add to an existing calendar
+const myCalendar = ayecal()
+myCalendar.addEvent(myEvent)
 ```
 
 ### Contributing
@@ -53,10 +63,12 @@ const eventICS = myEvent.toICS()
 PRs are welcomed :)
 
 ### To Do
+
 - [ ] Recurring Event Support
 - [ ] To Do Support
 - [ ] ICS Parsing
-
+- [ ] Non-mutable objects?
 
 ### License
+
 MIT License, Ewan Breakey 2022
