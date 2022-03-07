@@ -39,7 +39,7 @@ const myEvent = AyeEvent({
   summary: 'Company Mixer',
   location: '32 Downtown st, Melbourne Australia',
   description: 'Hey everyone! Come to my party :)',
-  uid: 5678 // from your API
+  uid: 5678, // from your API
   startTime: new Date(),
   endTime: new Date(),
 })
