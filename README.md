@@ -1,5 +1,5 @@
-# 👀 AyeCal
-Javascript ICal Creation utility.
+# 🏴‍☠️ AyeCal
+Javascript iCal creation utility.
 
 
 ### Usage
@@ -58,5 +58,5 @@ PRs are welcomed :)
 - [ ] ICS Parsing
 
 
-### Copyright
+### License
 MIT License, Ewan Breakey 2022

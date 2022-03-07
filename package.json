@@ -1,19 +1,19 @@
 {
   "name": "ayecal",
-  "version": "0.1.5",
-  "description": "Generate and serve iCal calendar files",
+  "version": "0.1.6",
+  "description": "Generate iCal calendar files",
+  "source": "src/index.js",
   "main": "dist/index.js",
   "repository": "https://github.com/giraugh/ayecal",
   "author": "Ewan Breakey <ebreakey@gmail.com>",
   "license": "MIT",
-  "private": false,
   "scripts": {
-    "build": "babel src --out-dir dist"
+    "watch": "parcel watch",
+    "build": "parcel build"
   },
   "devDependencies": {
-    "@babel/cli": "^7.17.6",
-    "@babel/core": "^7.17.5",
-    "@babel/preset-env": "^7.16.11",
-    "eslint": "^8.10.0"
+    "@babel/core": "^7.12.0",
+    "eslint": "^8.10.0",
+    "parcel": "^2.3.2"
   }
 }
