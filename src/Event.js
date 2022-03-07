@@ -11,9 +11,9 @@ export default class Event {
     location,
     sequence,
     scope = 'aye',
-    status = AyeEventStatus.CONFIRMED,
+    status = EventStatus.CONFIRMED,
     transparent = false,
-  }) {
+  } = {}) {
      
     // Check Dates
     if (!(startTime instanceof Date) || !(endTime instanceof Date))
@@ -26,8 +26,8 @@ export default class Event {
     // Set props from fields
     this.startTime = startTime
     this.endTime = endTime
-    this.createdTime = createdTime ?? (new Date())
-    this.timeStamp = (new Date())
+    this.createdTime = createdTime ?? new Date()
+    this.timeStamp = new Date()
     this.uid = uid // Must be unique and provided
     this.description = description
     this.location = location ? location.replaceAll(',', '\\,') : ''

@@ -4,13 +4,13 @@ export default class Calendar {
   constructor({
     name = '',
     scope = 'aye',
-  }) {
+  } = {}) {
     this.events = []
     this.name = name
     this.scope = scope
 
     // Get timezone
-    this.timeZoneName = Intl.DateTimeFormat().resolvedOptions().timeZone
+    this.timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone
 
     // Calendar Meta Information 
     this.meta = {
@@ -47,8 +47,8 @@ export default class Calendar {
 
 
   // Set calendar timezone
-  setTimezone(timeZoneName) {
-    this.timeZoneName = timeZoneName 
+  setTimezone(timeZone) {
+    this.timeZone = timeZone
     return this
   }
 
@@ -60,7 +60,7 @@ export default class Calendar {
       VERSION: this.meta.version,
       METHOD: this.meta.method,
       'X-WR-CALNAME': this.name,
-      'X-WR-TIMEZONE': this.timeZoneName,
+      'X-WR-TIMEZONE': this.timeZone,
     }
 
     // Convert calendar fields to a string
