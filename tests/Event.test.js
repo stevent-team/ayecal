@@ -12,7 +12,7 @@ test('creates an event', () => {
     endTime: testDate,
   })
 
-  expect(myEvent.summary).toBe('Jacob\'s 22nd Birthday Party')
+  expect(myEvent.summary).toBe('Jacob\\\'s 22nd Birthday Party')
   expect(myEvent.location).toBe('My apartment')
   expect(myEvent.description).toBe('Hey everyone! Come to my party :)')
   expect(myEvent.uid).toBe(0)

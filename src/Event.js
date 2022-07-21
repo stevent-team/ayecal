@@ -1,4 +1,4 @@
-import { formatDate } from './utils'
+import { formatDate, escapeText } from './utils'
 
 export default class Event {
   constructor({
@@ -29,10 +29,10 @@ export default class Event {
     this.createdTime = createdTime ?? new Date()
     this.timeStamp = new Date()
     this.uid = uid // Must be unique and provided
-    this.description = description
-    this.location = location ? location.replaceAll(',', '\\,') : ''
+    this.description = escapeText(description)
+    this.location = escapeText(location)
     this.status = status
-    this.summary = summary // Event name
+    this.summary = escapeText(summary) // Event name
     this.scope = scope
     this.transparent = transparent
     this.sequence = sequence
