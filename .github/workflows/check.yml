@@ -1,0 +1,30 @@
+name: Check
+
+on:
+  pull_request:
+    paths: ['src/**']
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
+        cache: 'yarn'
+        cache-dependency-path: '**/yarn.lock'
+    - run: yarn install --immutable
+    - run: yarn lint --max-warnings 0
+
+  typecheck:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v3
+      with:
+        node-version: 18
+        cache: 'yarn'
+        cache-dependency-path: '**/yarn.lock'
+    - run: yarn install --immutable
+    - run: yarn typecheck

@@ -1,23 +1,43 @@
 {
-  "name": "ayecal",
+  "name": "@stevent-team/ayecal",
   "version": "0.1.7",
-  "description": "Generate and serve iCal calendar files",
-  "source": "src/index.js",
-  "main": "dist/index.js",
-  "repository": "https://github.com/giraugh/ayecal",
-  "author": "Ewan Breakey <ebreakey@gmail.com>",
+  "description": "Create and manipulate iCal files",
+  "keywords": [
+    "ical",
+    "ics",
+    "calendar",
+    "webcal"
+  ],
+  "repository": "https://github.com/stevent-team/ayecal",
+  "author": "Stevent team (https://stevent.club)",
   "license": "MIT",
+  "type": "module",
+  "main": "dist/ayecal.umd.cjs",
+  "module": "dist/ayecal.js",
+  "types": "dist/ayecal.d.js",
+  "exports": {
+    ".": {
+      "import": "./dist/ayecal.js",
+      "require": "./dist/ayecal.umd.cjs"
+    }
+  },
   "scripts": {
-    "watch": "parcel watch",
-    "build": "parcel build",
-    "test": "jest ./tests"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "test": "vitest",
+    "typecheck": "tsc",
+    "ci:release": "yarn build && yarn changeset publish"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.5",
-    "@babel/preset-env": "^7.16.11",
-    "babel-jest": "^27.5.1",
+    "@changesets/cli": "^2.26.1",
+    "@types/node": "^18.15.11",
     "eslint": "^8.10.0",
-    "jest": "^27.5.1",
-    "parcel": "^2.3.2"
-  }
+    "typescript": "^5.0.3",
+    "vite": "^4.2.1",
+    "vite-plugin-dts": "^2.1.0",
+    "vitest": "^0.29.8"
+  },
+  "files": [
+    "dist"
+  ]
 }

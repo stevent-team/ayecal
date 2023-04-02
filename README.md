@@ -1,16 +1,22 @@
 # 🏴‍☠️ AyeCal
 
-Javascript iCal creation utility.
+[![npm version](https://img.shields.io/npm/v/@stevent-team/ayecal)](https://www.npmjs.com/package/@stevent-team/ayecal)
+[![minzip size](https://img.shields.io/bundlephobia/minzip/@stevent-team/ayecal)](https://bundlephobia.com/package/@stevent-team/ayecal)
 
-### Usage
+Typescript iCal creation and manipulation toolset 🪄📆
+
+> **Note**
+> This library is currently in alpha and the API may change significantly between versions.
+
+## Usage
 
 Install from npm
 
 ```bash
-npm install ayecal # or yarn add ayecal
+yarn add @stevent-team/ayecal
 ```
 
-**Creating Calendars**
+### Creating Calendars
 
 ```js
 import ayecal from 'ayecal'
@@ -35,7 +41,7 @@ const myCalendar = ayecal({
 const myICS = myCalendar.toICS()
 ```
 
-**Creating Events**
+### Creating Events
 
 ```js
 import ayecal from 'ayecal'
@@ -58,15 +64,17 @@ const myCalendar = ayecal()
 myCalendar.addEvent(myEvent)
 ```
 
-### Contributing
+## Contributing
 
-PRs are welcomed :)
+Issues and pull requests are welcomed.
 
 Run `yarn` to install dependencies then `yarn watch` to build on file changes.
 
 Run `yarn test` before committing to run the test cases.
 
-### To Do
+This library uses [changesets](https://github.com/changesets/changesets), if the changes you've made would constitute a version bump, run `yarn changeset` and follow the prompts to document the changes you've made. Changesets are consumed on releases, and used to generate a changelog and bump version number.
+
+## To Do
 
 - [ ] Recurring Event Support
 - [ ] To Do Support
@@ -74,6 +82,6 @@ Run `yarn test` before committing to run the test cases.
 - [ ] Non-mutable objects?
 - [ ] Support all fields from the iCal spec
 
-### License
+## License
 
-MIT License, Ewan Breakey 2022
+Created by Stevent and licensed under MIT
