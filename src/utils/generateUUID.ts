@@ -1,3 +1,5 @@
+import crypto from 'node:crypto'
+
 /**
  * Generate a UUID for identifying a calendar component.
  */

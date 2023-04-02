@@ -1,7 +1,7 @@
 import { ComponentCreatedTime, ComponentDescription, ComponentEndTime, ComponentId, ComponentLocation, ComponentRevision, ComponentStartTime, ComponentSummary, ComponentUpdatedTime, EventBusy, EventStatus } from './properties'
 import { formatDate, escapeText, takeOr, generateUUID } from './utils'
 
-type EventProps = {
+export type EventProps = {
   id?: ComponentId
   startTime: ComponentStartTime
   endTime?: ComponentEndTime | null

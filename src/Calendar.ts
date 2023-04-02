@@ -2,7 +2,7 @@ import Event from './Event'
 import { CalendarMethod, CalendarName, CalendarProductId, CalendarScale, CalendarScope, CalendarTimeZone } from './properties'
 import { takeOr } from './utils'
 
-type CalendarProps = {
+export type CalendarProps = {
   name?: CalendarName | null
   scope?: CalendarScope | null
   timeZone?: CalendarTimeZone | null
@@ -36,7 +36,7 @@ export default class Calendar {
     // Look for uid collision
     const collidingEvent = this.events.find(e => e.id === event.id)
     if (collidingEvent)
-      throw new Error(`Failed to add event with uid ${event.id}, uid already present in calendar`)
+      throw new Error(`Failed to add event with id ${event.id}, id already present in calendar`)
 
     this.events = [...this.events, event]
 
