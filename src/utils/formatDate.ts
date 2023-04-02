@@ -1,4 +1,4 @@
-const formatDate = date => {
+const formatDate = (date: Date) => {
   const iso = date
     .toISOString()
     .replace(/\..*/, '')

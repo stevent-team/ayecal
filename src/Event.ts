@@ -14,7 +14,7 @@ export default class Event {
     status = EventStatus.CONFIRMED,
     transparent = false,
   } = {}) {
-     
+
     // Check Dates
     if (!(startTime instanceof Date) || !(endTime instanceof Date))
       throw new Error('startTime and endTime arguments must be Date types')
@@ -22,7 +22,7 @@ export default class Event {
     // Check UID existence
     if (uid === undefined)
       throw new Error('UID argument must be provided to provide unique identifiers to each event')
-    
+
     // Set props from fields
     this.startTime = startTime
     this.endTime = endTime

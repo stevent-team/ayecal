@@ -1,82 +1,6 @@
-import type { LiteralUnion } from 'type-fest'
-
 import Event from './Event'
-
-/**
- * The calendar scale/system to use.
- *
- * @defaultValue `GREGORIAN`
- *
- * @see `CALSCALE` in {@link https://datatracker.ietf.org/doc/html/rfc5545#section-3.7.1 | RFC 5545}
- */
-type CalendarScale = LiteralUnion<'GREGORIAN', string>
-
-/**
- * The method associated with this calendar.
- *
- * When used in a MIME message entity, the value of this
- * property MUST be the same as the Content-Type "method" parameter
- * value. If either this property or the Content-Type
- * "method" parameter is specified, then the other MUST also be
- * specified.
- *
- * @defaultValue `PUBLISH`
- *
- * @see `METHOD` in {@link https://datatracker.ietf.org/doc/html/rfc5545#section-3.7.2 | RFC 5545}
- * @see Specification of methods in {@link https://datatracker.ietf.org/doc/html/rfc5546 | RFC 5546}
- */
-type CalendarMethod = LiteralUnion<'PUBLISH' | 'REQUEST' | 'REPLY' | 'ADD' | 'CANCEL' | 'REFRESH' | 'COUNTER' | 'DECLINECOUNTER', string>
-
-/**
- * The ID of the product that created this calendar.
- *
- * @defaultValue `-//AyeCal//AyeCal//EN`
- *
- * @example `-//ABC Corporation//NONSGML My Product//EN`
- *
- * @see `PRODID` in {@link https://datatracker.ietf.org/doc/html/rfc5545#section-3.7.3 | RFC 5545}
- */
-type CalendarProductId = string
-
-/**
- * The name of the calendar. This is a non-standard property and sets `X-WR-CALNAME`.
- *
- * @see Non-Standard Properties in {@link https://datatracker.ietf.org/doc/html/rfc5545#section-3.8.8.2 | RFC 5545}
- */
-type CalendarName = string
-
-/**
- * The timezone of the whole calendar. This is a non-standard property and sets `X-WR-TIMEZONE`.
- * Setting to `null` will remove this from the calendar.
- *
- * Note that timezones can also be set individually for events.
- *
- * @defaultValue
- * Automatically determines the timezone using the following snippet:
- * ```
- * Intl.DateTimeFormat().resolvedOptions().timeZone
- * ```
- *
- * @see Non-Standard Properties in {@link https://datatracker.ietf.org/doc/html/rfc5545#section-3.8.8.2 | RFC 5545}
- */
-type CalendarTimeZone = string
-
-/**
- * Scope to use for all IDs inside this calendar.
- * This ensures that any event IDs will not clash with other calendars.
- *
- * It is recommended that the scope be a domain name or a domain literal IP address of the host.
- *
- * @example `example.com`
- *
- * @see `UID` in {@link https://datatracker.ietf.org/doc/html/rfc5545#section-3.8.4.7 | RFC 5545}
- */
-type CalendarScope = string
-
-/**
- * Events inside this calendar in order of when they were added.
- */
-type CalendarEvents = Event[]
+import { CalendarMethod, CalendarName, CalendarProductId, CalendarScale, CalendarScope, CalendarTimeZone } from './properties'
+import { takeOr } from './utils'
 
 type CalendarProps = {
   name?: CalendarName
@@ -87,13 +11,8 @@ type CalendarProps = {
   productId?: CalendarProductId
 }
 
-/**
- * Returns the value if it's not undefined, otherwise returns the fallback
- */
-const takeOr = <TValue, TFallback>(value: TValue, fallback: TFallback) => value === undefined ? fallback : value
-
 export default class Calendar {
-  events: CalendarEvents
+  events: Event[]
   name: CalendarName | null
   scope: CalendarScope | null
   timeZone: CalendarTimeZone | null

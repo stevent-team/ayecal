@@ -5,7 +5,7 @@
 
 Typescript iCal creation and manipulation toolset 🪄📆
 
-> **Note**
+> **Warning**
 > This library is currently in alpha and the API may change significantly between versions.
 
 ## Usage
