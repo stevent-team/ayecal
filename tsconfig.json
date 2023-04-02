@@ -4,6 +4,9 @@
     "useDefineForClassFields": true,
     "module": "ESNext",
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
+    "paths": {
+      "@stevent-team/ayecal": ["./src/index.ts"]
+    },
     "moduleResolution": "Node",
     "strict": true,
     "sourceMap": true,
@@ -14,6 +17,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
   }
 }

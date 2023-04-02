@@ -18,6 +18,7 @@
     "prefer-const": "warn",
     "no-trailing-spaces": "warn",
     "eol-last": ["warn", "always"],
+    "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": ["warn", {
       "args": "all",
       "argsIgnorePattern": "^_",
