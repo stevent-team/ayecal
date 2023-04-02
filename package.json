@@ -24,6 +24,8 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "build:demo": "tsc && vite build -m demo",
+    "lint": "eslint --ext .ts ./src",
     "test": "vitest",
     "typecheck": "tsc",
     "ci:release": "yarn build && yarn changeset publish"
