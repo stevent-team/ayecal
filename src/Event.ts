@@ -1,58 +1,71 @@
-import { formatDate, escapeText } from './utils'
+import { ComponentCreatedTime, ComponentDescription, ComponentEndTime, ComponentId, ComponentLocation, ComponentRevision, ComponentStartTime, ComponentSummary, ComponentUpdatedTime, EventBusy, EventStatus } from './properties'
+import { formatDate, escapeText, takeOr, generateUUID } from './utils'
+
+type EventProps = {
+  id?: ComponentId
+  startTime: ComponentStartTime
+  endTime?: ComponentEndTime | null
+  summary?: ComponentSummary | null
+  description?: ComponentDescription | null
+  location?: ComponentLocation | null
+  createdTime?: ComponentCreatedTime | null
+  updatedTime?: ComponentUpdatedTime | null
+  revision?: ComponentRevision | null
+  status?: EventStatus | null
+  busy?: EventBusy | null
+}
 
 export default class Event {
-  constructor({
-    summary,
-    startTime,
-    endTime,
-    uid,
-    description,
-    createdTime,
-    location,
-    sequence,
-    scope = 'aye',
-    status = EventStatus.CONFIRMED,
-    transparent = false,
-  } = {}) {
+  id: ComponentId
+  startTime: ComponentStartTime
+  endTime: ComponentEndTime | null
+  summary: ComponentSummary | null
+  description: ComponentDescription | null
+  location: ComponentLocation | null
+  createdTime: ComponentCreatedTime | null
+  updatedTime: ComponentUpdatedTime | null
+  timeStamp: Date
+  revision: ComponentRevision | null
+  status: EventStatus | null
+  busy: EventBusy | null
 
-    // Check Dates
-    if (!(startTime instanceof Date) || !(endTime instanceof Date))
-      throw new Error('startTime and endTime arguments must be Date types')
-
-    // Check UID existence
-    if (uid === undefined)
-      throw new Error('UID argument must be provided to provide unique identifiers to each event')
+  constructor(props: EventProps) {
+    // Check start date
+    if (!(props.startTime instanceof Date))
+      throw new Error('startTime property must be a Date type')
 
     // Set props from fields
-    this.startTime = startTime
-    this.endTime = endTime
-    this.createdTime = createdTime ?? new Date()
+    this.id = takeOr(props.id, generateUUID())
+    this.startTime = props.startTime
+    this.endTime = takeOr(props.endTime, null)
+    this.summary = takeOr(props.summary && escapeText(props.summary), null)
+    this.description = takeOr(props.description && escapeText(props.description), null)
+    this.location = takeOr(props.location && escapeText(props.location), null)
+    this.createdTime = takeOr(props.createdTime, new Date())
+    this.updatedTime = takeOr(props.createdTime, new Date())
     this.timeStamp = new Date()
-    this.uid = uid // Must be unique and provided
-    this.description = escapeText(description)
-    this.location = escapeText(location)
-    this.status = status
-    this.summary = escapeText(summary) // Event name
-    this.scope = scope
-    this.transparent = transparent
-    this.sequence = sequence
+    this.revision = takeOr(props.revision, 0)
+    this.status = takeOr(props.status, null)
+    this.busy = takeOr(props.busy, true)
   }
 
-  // Create ics string from event
-  toICS() {
+  /**
+   * Formats the event as an iCalendar string that conforms to {@link https://datatracker.ietf.org/doc/html/rfc5545 | RFC 5545}.
+   */
+  toString(scope: string | null) {
     const fields = {
       DTSTART: formatDate(this.startTime),
-      DTEND: formatDate(this.endTime),
+      DTEND: this.endTime && formatDate(this.endTime),
       DTSTAMP: formatDate(this.timeStamp),
-      UID: `${this.uid}@${this.scope}`,
+      UID: `${this.id}${scope && `@${scope}`}`,
       CREATED: formatDate(this.timeStamp),
       DESCRIPTION: this.description,
-      'LAST-MODIFIED': formatDate(this.createdTime),
+      'LAST-MODIFIED': this.createdTime && formatDate(this.createdTime),
       LOCATION: this.location,
       STATUS: this.status,
       SUMMARY: this.summary,
-      TRANSP: this.transparent ? 'TRANSPARENT' : 'OPAQUE',
-      SEQUENCE: this.sequence,
+      TRANSP: this.busy && (this.busy ? 'OPAQUE' : 'TRANSPARENT'),
+      SEQUENCE: this.revision,
     }
 
     const text = Object.entries(fields)
@@ -62,10 +75,4 @@ export default class Event {
 
     return `BEGIN:VEVENT\n${text}\nEND:VEVENT`
   }
-}
-
-export const EventStatus = {
-  CONFIRMED: 'CONFIRMED',
-  CANCELLED: 'CANCELLED',
-  TENTATIVE: 'TENTATIVE',
 }

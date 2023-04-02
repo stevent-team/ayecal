@@ -3,11 +3,11 @@ import { CalendarMethod, CalendarName, CalendarProductId, CalendarScale, Calenda
 import { takeOr } from './utils'
 
 type CalendarProps = {
-  name?: CalendarName
-  scope?: CalendarScope
+  name?: CalendarName | null
+  scope?: CalendarScope | null
   timeZone?: CalendarTimeZone | null
-  scale?: CalendarScale
-  method?: CalendarMethod
+  scale?: CalendarScale | null
+  method?: CalendarMethod | null
   productId?: CalendarProductId
 }
 
@@ -33,14 +33,10 @@ export default class Calendar {
 
   // Add event to calendar
   addEvent(event: Event) {
-    // Ensure event is an Event object
-    if (!(event instanceof Event))
-      event = new Event({ ...event, scope: this.scope })
-
     // Look for uid collision
-    const collidingEvent = this.events.find(e => e.uid === event.uid)
+    const collidingEvent = this.events.find(e => e.id === event.id)
     if (collidingEvent)
-      throw new Error(`Failed to add event with uid ${event.uid}, uid already present in calendar`)
+      throw new Error(`Failed to add event with uid ${event.id}, uid already present in calendar`)
 
     this.events = [...this.events, event]
 
@@ -74,7 +70,7 @@ export default class Calendar {
 
     // Convert calendar events to a string
     const eventText = this.events
-      .map(event => event.toString())
+      .map(event => event.toString(this.scope))
       .join('\n')
 
     return `BEGIN:VCALENDAR\n${text}\n${eventText}\nEND:VCALENDAR`
