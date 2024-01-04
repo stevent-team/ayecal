@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { Calendar, Event } from '@stevent-team/ayecal'
-import { CalendarProps } from '../src/Calendar'
+import { Calendar, Event, CalendarProperties } from 'ayecal'
 
 describe('Calendar', () => {
   it('creates a calendar object with defaults', () => {
@@ -15,8 +14,8 @@ describe('Calendar', () => {
     const DATA = {
       name: 'My Calendar',
       productId: '-//ABC Corporation//NONSGML My Product//EN',
-      timeZone: 'fake/timezone'
-    } satisfies CalendarProps
+      timeZone: 'fake/timezone',
+    } satisfies CalendarProperties
 
     const myCalendar = new Calendar(DATA)
 

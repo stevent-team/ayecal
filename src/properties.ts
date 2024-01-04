@@ -1,6 +1,17 @@
 import type { LiteralUnion } from 'type-fest'
 
 /**
+ * A custom property.
+ *
+ * It's highly recommended that you prefix any custom
+ * properties with `X-` to prevent conflicts with existing
+ * properties.
+ *
+ * @see Non-Standard Properties in {@link https://datatracker.ietf.org/doc/html/rfc5545#section-3.8.8.2 | RFC 5545}
+ */
+export type CustomProperty = LiteralUnion<`X-${string}`, string>
+
+/**
  * The calendar scale/system to use.
  *
  * @defaultValue `GREGORIAN`
@@ -91,6 +102,15 @@ export type ComponentStartTime = Date
  * @see `DTEND` in {@link https://datatracker.ietf.org/doc/html/rfc5545#section-3.8.2.2 | RFC 5545}
  */
 export type ComponentEndTime = Date
+
+/**
+ * When this component was created.
+ *
+ * @defaultValue The current date
+ *
+ * @see `DTSTAMP` in {@link https://datatracker.ietf.org/doc/html/rfc5545#section-3.8.7.2 | RFC 5545}
+ */
+export type ComponentTimeStamp = Date
 
 /**
  * The unique identifier for this component.

@@ -1,2 +1,5 @@
-export { default as Calendar } from './Calendar'
-export { default as Event } from './Event'
+export { Calendar } from './Calendar'
+export type { CalendarProperties } from './Calendar'
+export { Event } from './Event'
+export type { EventProperties } from './Event'
+export * from './properties'

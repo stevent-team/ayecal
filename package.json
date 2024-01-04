@@ -1,5 +1,5 @@
 {
-  "name": "@stevent-team/ayecal",
+  "name": "ayecal",
   "version": "0.1.7",
   "description": "Create and manipulate iCal files",
   "keywords": [

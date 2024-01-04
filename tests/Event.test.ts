@@ -1,6 +1,5 @@
-import { Event } from '@stevent-team/ayecal'
+import { Event, EventProperties } from 'ayecal'
 import { describe, expect, it } from 'vitest'
-import { EventProps } from '../src/Event'
 
 const TEST_DATE = new Date('2022-08-17T17:00:00')
 
@@ -22,7 +21,7 @@ describe('Event', () => {
       description: 'Hey everyone! Come to my party :)',
       startTime: TEST_DATE,
       endTime: TEST_DATE,
-    } satisfies EventProps
+    } satisfies EventProperties
 
     const myEvent = new Event(DATA)
 

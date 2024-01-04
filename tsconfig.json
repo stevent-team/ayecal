@@ -5,7 +5,7 @@
     "module": "ESNext",
     "lib": ["ESNext", "DOM", "DOM.Iterable"],
     "paths": {
-      "@stevent-team/ayecal": ["./src/index.ts"]
+      "ayecal": ["./src/index.ts"]
     },
     "moduleResolution": "Node",
     "strict": true,

@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => ({
   ],
   resolve: {
     alias: {
-      '@stevent-team/ayecal': resolve(__dirname, '/src/index.ts')
+      'ayecal': resolve(__dirname, '/src/index.ts')
     }
   },
   build: {

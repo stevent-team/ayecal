@@ -1,7 +1,7 @@
 # 🏴‍☠️ AyeCal
 
-[![npm version](https://img.shields.io/npm/v/@stevent-team/ayecal)](https://www.npmjs.com/package/@stevent-team/ayecal)
-[![minzip size](https://img.shields.io/bundlephobia/minzip/@stevent-team/ayecal)](https://bundlephobia.com/package/@stevent-team/ayecal)
+[![npm version](https://img.shields.io/npm/v/ayecal)](https://www.npmjs.com/package/ayecal)
+[![minzip size](https://img.shields.io/bundlephobia/minzip/ayecal)](https://bundlephobia.com/package/ayecal)
 
 Typescript iCal creation and manipulation toolset 🪄📆
 
@@ -13,7 +13,7 @@ Typescript iCal creation and manipulation toolset 🪄📆
 Install from npm
 
 ```bash
-yarn add @stevent-team/ayecal
+yarn add ayecal
 ```
 
 ### Creating Calendars
