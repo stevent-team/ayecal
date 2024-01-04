@@ -5,7 +5,7 @@ import dts from 'vite-plugin-dts'
 export default defineConfig({
   plugins: [
     dts({
-      insertTypesEntry: true,
+      rollupTypes: true,
     }),
   ],
   resolve: {
@@ -14,15 +14,10 @@ export default defineConfig({
     },
   },
   build: {
+    target: 'esnext',
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'ayecal',
-      fileName: 'ayecal',
-    },
-    rollupOptions: {
-      output: {
-        exports: 'named',
-      },
     },
   },
 })

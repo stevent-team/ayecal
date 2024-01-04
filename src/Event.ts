@@ -124,8 +124,8 @@ export class Event {
    * @throws {Error}
    * If the iCalendar is invalid.
    */
-  static fromIcs(ics: string) {
-    // TODO:
-    return new Event({ startTime: new Date() })
-  }
+  // static fromIcs(ics: string) {
+  //   // TODO:
+  //   return new Event({ startTime: new Date() })
+  // }
 }

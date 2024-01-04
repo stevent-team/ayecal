@@ -10,7 +10,7 @@
   "type": "module",
   "main": "dist/ayecal.umd.cjs",
   "module": "dist/ayecal.js",
-  "types": "dist/ayecal.d.js",
+  "types": "dist/ayecal.d.ts",
   "exports": {
     ".": {
       "import": "./dist/ayecal.js",

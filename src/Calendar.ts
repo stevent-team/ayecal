@@ -117,8 +117,8 @@ export class Calendar {
    * @throws {Error}
    * If the iCalendar is invalid.
    */
-  static fromIcs(ics: string) {
-    // TODO:
-    return new Calendar()
-  }
+  // static fromIcs(ics: string) {
+  //   // TODO:
+  //   return new Calendar()
+  // }
 }
