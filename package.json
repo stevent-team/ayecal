@@ -1,23 +1,37 @@
 {
   "name": "ayecal",
   "version": "0.1.7",
-  "description": "Generate and serve iCal calendar files",
-  "source": "src/index.js",
-  "main": "dist/index.js",
-  "repository": "https://github.com/giraugh/ayecal",
-  "author": "Ewan Breakey <ebreakey@gmail.com>",
+  "description": "Create and manipulate iCal files",
+  "keywords": ["ical", "ics", "calendar", "webcal"],
+  "repository": "https://github.com/stevent-team/ayecal",
+  "author": "Stevent team (https://stevent.club)",
   "license": "MIT",
+  "packageManager": "yarn@4.0.2",
+  "type": "module",
+  "main": "dist/ayecal.umd.cjs",
+  "module": "dist/ayecal.js",
+  "types": "dist/ayecal.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/ayecal.js",
+      "require": "./dist/ayecal.umd.cjs"
+    }
+  },
+  "files": ["dist"],
   "scripts": {
-    "watch": "parcel watch",
-    "build": "parcel build",
-    "test": "jest ./tests"
+    "build": "tsc && vite build",
+    "lint": "biome check .",
+    "format": "biome check --apply .",
+    "test": "vitest"
   },
   "devDependencies": {
-    "@babel/core": "^7.17.5",
-    "@babel/preset-env": "^7.16.11",
-    "babel-jest": "^27.5.1",
-    "eslint": "^8.10.0",
-    "jest": "^27.5.1",
-    "parcel": "^2.3.2"
+    "@biomejs/biome": "^1.4.1",
+    "@changesets/cli": "^2.27.1",
+    "@types/node": "^20.10.6",
+    "type-fest": "^4.9.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.10",
+    "vite-plugin-dts": "^3.7.0",
+    "vitest": "^1.1.1"
   }
 }
