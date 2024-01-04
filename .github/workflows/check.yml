@@ -1,47 +1,41 @@
 name: Check
 
 on:
-  pull_request:
-    paths:
-      - 'src/**'
-      - 'tests/**'
-      - '.eslintrc.json'
-      - 'tsconfig.json'
-      - '.github/workflows/check.yml'
+  push:
+    paths-ignore:
+      - .vscode/**
+      - README.md
 
 jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
+    - uses: actions/checkout@v4
+    - run: corepack enable
+    - uses: actions/setup-node@v4
       with:
-        node-version: 18
-        cache: 'yarn'
-        cache-dependency-path: '**/yarn.lock'
-    - run: yarn install --immutable
-    - run: yarn lint --max-warnings 0
+        cache: yarn
+    - run: yarn install
+    - run: yarn lint
 
   typecheck:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
+    - uses: actions/checkout@v4
+    - run: corepack enable
+    - uses: actions/setup-node@v4
       with:
-        node-version: 18
-        cache: 'yarn'
-        cache-dependency-path: '**/yarn.lock'
-    - run: yarn install --immutable
-    - run: yarn typecheck
+        cache: yarn
+    - run: yarn install
+    - run: yarn tsc
 
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
+    - uses: actions/checkout@v4
+    - run: corepack enable
+    - uses: actions/setup-node@v4
       with:
-        node-version: 18
-        cache: 'yarn'
-        cache-dependency-path: '**/yarn.lock'
-    - run: yarn install --immutable
+        cache: yarn
+    - run: yarn install
     - run: yarn test

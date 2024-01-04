@@ -1,5 +1,5 @@
+import { Calendar, CalendarProperties, Event } from 'ayecal'
 import { describe, expect, it } from 'vitest'
-import { Calendar, Event, CalendarProperties } from 'ayecal'
 
 describe('Calendar', () => {
   it('creates a calendar object with defaults', () => {
@@ -31,8 +31,7 @@ describe('Calendar.addEvent', () => {
     const myEvent = new Event({
       startTime: new Date(),
     })
-    const myCalendar = new Calendar()
-      .addEvent(myEvent)
+    const myCalendar = new Calendar().addEvent(myEvent)
 
     expect(myCalendar.events).toHaveLength(1)
     expect(myCalendar.events).toContain(myEvent)
@@ -43,9 +42,10 @@ describe('Calendar.addEvent', () => {
       startTime: new Date(),
       id: 'cool-id',
     })
-    const myCalendar = new Calendar()
-      .addEvent(myEvent)
+    const myCalendar = new Calendar().addEvent(myEvent)
 
-    expect(() => myCalendar.addEvent(myEvent)).toThrowError('Failed to add event with id cool-id, id already present in calendar')
+    expect(() => myCalendar.addEvent(myEvent)).toThrowError(
+      'Failed to add event with id cool-id, id already present in calendar',
+    )
   })
 })

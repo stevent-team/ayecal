@@ -1,7 +1,38 @@
-import { ComponentCreatedTime, ComponentDescription, ComponentEndTime, ComponentId, ComponentLocation, ComponentRevision, ComponentStartTime, ComponentSummary, ComponentTimeStamp, ComponentUpdatedTime, CustomProperty, EventBusy, EventStatus } from './properties'
-import { formatDate, escapeText, takeOr, generateUUID } from './utils'
+import {
+  ComponentCreatedTime,
+  ComponentDescription,
+  ComponentEndTime,
+  ComponentId,
+  ComponentLocation,
+  ComponentRevision,
+  ComponentStartTime,
+  ComponentSummary,
+  ComponentTimeStamp,
+  ComponentUpdatedTime,
+  CustomProperty,
+  EventBusy,
+  EventStatus,
+} from './properties'
+import { escapeText, formatDate, generateUUID, takeOr } from './utils'
 
-export type EventProperties = Partial<Pick<Event, 'id' | 'startTime' | 'endTime' | 'summary' | 'description' | 'location' | 'createdTime' | 'updatedTime' | 'timeStamp' | 'revision' | 'status' | 'busy' | 'custom'>> & {
+export type EventProperties = Partial<
+  Pick<
+    Event,
+    | 'id'
+    | 'startTime'
+    | 'endTime'
+    | 'summary'
+    | 'description'
+    | 'location'
+    | 'createdTime'
+    | 'updatedTime'
+    | 'timeStamp'
+    | 'revision'
+    | 'status'
+    | 'busy'
+    | 'custom'
+  >
+> & {
   startTime: ComponentStartTime
 }
 

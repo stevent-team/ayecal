@@ -16,7 +16,7 @@ describe('Event', () => {
   it('creates an event object with provided values', () => {
     const DATA = {
       id: '0',
-      summary: 'Jacob\'s 22nd Birthday Party',
+      summary: "Jacob's 22nd Birthday Party",
       location: 'My apartment',
       description: 'Hey everyone! Come to my party :)',
       startTime: TEST_DATE,
@@ -26,7 +26,7 @@ describe('Event', () => {
     const myEvent = new Event(DATA)
 
     expect(myEvent.id).toBe(DATA.id)
-    expect(myEvent.summary).toBe('Jacob\\\'s 22nd Birthday Party')
+    expect(myEvent.summary).toBe("Jacob\\'s 22nd Birthday Party")
     expect(myEvent.location).toBe(DATA.location)
     expect(myEvent.description).toBe('Hey everyone! Come to my party :)')
     expect(myEvent.startTime).toBe(DATA.startTime)

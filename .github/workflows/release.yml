@@ -2,28 +2,29 @@ name: Release
 
 on:
   push:
-    branches: ['main']
+    branches:
+      - main
     paths:
       - '**/package.json'
-      - '.changeset/**'
-      - '.github/workflows/release.yml'
+      - .changeset/**
+      - .github/workflows/release.yml
 
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 0
-    - uses: actions/setup-node@v3
+    - run: corepack enable
+    - uses: actions/setup-node@v4
       with:
-        node-version: 18
-        cache: 'yarn'
-        cache-dependency-path: '**/yarn.lock'
-    - run: yarn install --immutable
+        cache: yarn
+    - run: yarn install
+    - run: yarn build
     - uses: changesets/action@v1
       with:
-        publish: yarn ci:release
+        publish: yarn changeset publish
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         NPM_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}

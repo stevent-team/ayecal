@@ -34,7 +34,10 @@ export type CalendarScale = LiteralUnion<'GREGORIAN', string>
  * @see `METHOD` in {@link https://datatracker.ietf.org/doc/html/rfc5545#section-3.7.2 | RFC 5545}
  * @see Specification of methods in {@link https://datatracker.ietf.org/doc/html/rfc5546 | RFC 5546}
  */
-export type CalendarMethod = LiteralUnion<'PUBLISH' | 'REQUEST' | 'REPLY' | 'ADD' | 'CANCEL' | 'REFRESH' | 'COUNTER' | 'DECLINECOUNTER', string>
+export type CalendarMethod = LiteralUnion<
+  'PUBLISH' | 'REQUEST' | 'REPLY' | 'ADD' | 'CANCEL' | 'REFRESH' | 'COUNTER' | 'DECLINECOUNTER',
+  string
+>
 
 /**
  * The ID of the product that created this calendar.

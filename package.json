@@ -2,15 +2,11 @@
   "name": "ayecal",
   "version": "0.1.7",
   "description": "Create and manipulate iCal files",
-  "keywords": [
-    "ical",
-    "ics",
-    "calendar",
-    "webcal"
-  ],
+  "keywords": ["ical", "ics", "calendar", "webcal"],
   "repository": "https://github.com/stevent-team/ayecal",
   "author": "Stevent team (https://stevent.club)",
   "license": "MIT",
+  "packageManager": "yarn@4.0.2",
   "type": "module",
   "main": "dist/ayecal.umd.cjs",
   "module": "dist/ayecal.js",
@@ -21,28 +17,21 @@
       "require": "./dist/ayecal.umd.cjs"
     }
   },
+  "files": ["dist"],
   "scripts": {
-    "dev": "vite",
     "build": "tsc && vite build",
-    "build:demo": "tsc && vite build -m demo",
-    "lint": "eslint --ext .ts ./src",
-    "test": "vitest",
-    "typecheck": "tsc",
-    "ci:release": "yarn build && yarn changeset publish"
+    "lint": "biome check .",
+    "format": "biome check --apply .",
+    "test": "vitest"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.26.1",
-    "@types/node": "^18.15.11",
-    "@typescript-eslint/eslint-plugin": "^5.57.0",
-    "@typescript-eslint/parser": "^5.57.0",
-    "eslint": "^8.10.0",
-    "type-fest": "^3.7.2",
-    "typescript": "^5.0.3",
-    "vite": "^4.2.1",
-    "vite-plugin-dts": "^2.1.0",
-    "vitest": "^0.29.8"
-  },
-  "files": [
-    "dist"
-  ]
+    "@biomejs/biome": "^1.4.1",
+    "@changesets/cli": "^2.27.1",
+    "@types/node": "^20.10.6",
+    "type-fest": "^4.9.0",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.10",
+    "vite-plugin-dts": "^3.7.0",
+    "vitest": "^1.1.1"
+  }
 }

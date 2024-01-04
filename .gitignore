@@ -1,4 +1,5 @@
 node_modules
 dist
-.vscode
 yarn-error.log
+.yarn
+*.tsbuildinfo

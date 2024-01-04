@@ -7,7 +7,7 @@
     "paths": {
       "ayecal": ["./src/index.ts"]
     },
-    "moduleResolution": "Node",
+    "moduleResolution": "Bundler",
     "strict": true,
     "sourceMap": true,
     "resolveJsonModule": true,
@@ -17,6 +17,9 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
+    "noImplicitAny": true,
     "skipLibCheck": true,
+    "incremental": true,
+    "forceConsistentCasingInFileNames": true
   }
 }

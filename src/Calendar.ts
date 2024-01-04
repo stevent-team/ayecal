@@ -1,8 +1,18 @@
 import { Event } from './Event'
-import { CalendarMethod, CalendarName, CalendarProductId, CalendarScale, CalendarScope, CalendarTimeZone, CustomProperty } from './properties'
+import {
+  CalendarMethod,
+  CalendarName,
+  CalendarProductId,
+  CalendarScale,
+  CalendarScope,
+  CalendarTimeZone,
+  CustomProperty,
+} from './properties'
 import { takeOr } from './utils'
 
-export type CalendarProperties = Partial<Pick<Calendar, 'name' | 'scope' | 'timeZone' | 'scale' | 'method' | 'productId' | 'custom'>>
+export type CalendarProperties = Partial<
+  Pick<Calendar, 'name' | 'scope' | 'timeZone' | 'scale' | 'method' | 'productId' | 'custom'>
+>
 
 /**
  * An AyeCal Calendar.
@@ -37,11 +47,11 @@ export class Calendar {
 
   constructor(props: CalendarProperties = {}) {
     this.name = takeOr(props.name, null)
-    this.scope = takeOr(props.scope, null),
-    this.scale = takeOr(props.scale, 'GREGORIAN'),
-    this.method = takeOr(props.method, 'PUBLISH'),
-    this.productId = takeOr(props.productId, '-//AyeCal//AyeCal//EN'),
-    this.timeZone = takeOr(props.timeZone, Intl.DateTimeFormat().resolvedOptions().timeZone),
+    this.scope = takeOr(props.scope, null)
+    this.scale = takeOr(props.scale, 'GREGORIAN')
+    this.method = takeOr(props.method, 'PUBLISH')
+    this.productId = takeOr(props.productId, '-//AyeCal//AyeCal//EN')
+    this.timeZone = takeOr(props.timeZone, Intl.DateTimeFormat().resolvedOptions().timeZone)
     this.custom = takeOr(props.custom, {})
     this.#events = []
   }
@@ -58,9 +68,8 @@ export class Calendar {
    */
   addEvent(newEvent: Event) {
     // Look for uid collision
-    const collidingEvent = this.#events.find(event => event.id === newEvent.id)
-    if (collidingEvent)
-      throw new Error(`Failed to add event with id ${newEvent.id}, id already present in calendar`)
+    const collidingEvent = this.#events.find((event) => event.id === newEvent.id)
+    if (collidingEvent) throw new Error(`Failed to add event with id ${newEvent.id}, id already present in calendar`)
 
     this.#events = [...this.#events, newEvent]
 
@@ -71,7 +80,7 @@ export class Calendar {
    * Removes an event by ID from the Calendar. Does nothing if there are no matching events.
    */
   removeEvent(eventId: string) {
-    this.#events = this.#events.filter(event => event.id !== eventId)
+    this.#events = this.#events.filter((event) => event.id !== eventId)
   }
 
   /**
@@ -95,9 +104,7 @@ export class Calendar {
       .join('\n')
 
     // Convert calendar events to a string
-    const eventText = this.#events
-      .map(event => event.toString(this.scope))
-      .join('\n')
+    const eventText = this.#events.map((event) => event.toString(this.scope)).join('\n')
 
     return `BEGIN:VCALENDAR\n${text}\n${eventText}\nEND:VCALENDAR`
   }
